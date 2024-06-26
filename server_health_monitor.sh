@@ -17,7 +17,7 @@ get_memory_usage() {
 # Function to get CPU Usage
 get_cpu_usage() {
   echo "CPU Usage:"
-  mpstat | awk 'NR==4 {print "CPU usage: " 100-$12"%"}'
+  top -l 1 | grep -E "^CPU" | awk '{print "CPU usage: " $3 + $5 "%"}'
   echo ""
 }
 
